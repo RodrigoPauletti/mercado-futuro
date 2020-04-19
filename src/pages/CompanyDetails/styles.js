@@ -62,7 +62,7 @@ export const CompanyDetailsImage = styled.img.attrs(({ src }) => {
   width: 100%;
   max-width: 15rem;
   padding: 1rem;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
 `;
 
 export const CompanyDetailsDescription = styled.p`
