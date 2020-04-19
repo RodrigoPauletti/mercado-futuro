@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-import { fonts, colors } from "./variables.js";
+import { fonts, colors } from "./variables";
 
 import logoMercadoFuturo from "./assets/images/logo-mercado-futuro.png";
 import homeBgImage from "./assets/images/bg.png";
@@ -9,6 +9,9 @@ import aboutImage from "./assets/images/about.svg";
 import aboutBanner from "./assets/images/about-banner.svg";
 
 export const GlobalStyle = createGlobalStyle`
+  * {
+    outline: none;
+  }
   html, body {
     margin: 0;
     padding: 1.9rem 0 0;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { colors } from "../../variables.js";
+import { colors } from "../../variables";
 
 import bgImage from "../../assets/images/bg.png";
 import aboutBanner from "../../assets/images/about-banner.svg";

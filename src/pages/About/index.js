@@ -4,14 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag, faChartBar } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  Container,
-  Section,
-  Subsection,
-  Title,
-  Subtitle,
-  Text,
-} from "../../styles";
-import {
   AboutContainer,
   AboutBanner,
   AboutImage,
@@ -23,6 +15,14 @@ import {
   AboutItemDescriptionList,
   AboutItemDescription,
 } from "./styles";
+import {
+  Container,
+  Section,
+  Subsection,
+  Title,
+  Subtitle,
+  Text,
+} from "../../styles";
 
 function About() {
   return (

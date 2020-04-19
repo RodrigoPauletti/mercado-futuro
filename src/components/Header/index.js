@@ -9,44 +9,53 @@ import { Menu, Logo, MenuList, MenuListItem, MenuListMobile } from "./styles";
 function Header() {
   const [routeSelected, setRouteSelected] = useState(window.location.pathname);
 
-  function handleClick(event, route) {
+  const handleClick = (event, route) => {
     setRouteSelected(route);
-  }
+  };
 
   return (
-    <>
-      <Menu>
-        <a
-          href="http://bit.ly/megahack-covid19-economia"
-          rel="noopener noreferrer"
-        >
+    <Menu>
+      <Link to="/" onClick={(ev) => handleClick(ev, "/")}>
+        <Logo />
+      </Link>
+      {/* <a href="http://bit.ly/mercado-futuro" rel="noopener noreferrer">
           <Logo />
-        </a>
-        <MenuList>
-          <MenuListItem>
-            <Link
-              className={routeSelected === "/" ? "active" : null}
-              to="/"
-              onClick={(ev) => handleClick(ev, "/")}
-            >
-              Início
-            </Link>
-          </MenuListItem>
-          <MenuListItem>
-            <Link
-              className={(routeSelected === "/about" ? "active" : "") + " new"}
-              to="/about"
-              onClick={(ev) => handleClick(ev, "/about")}
-            >
-              Sobre
-            </Link>
-          </MenuListItem>
-        </MenuList>
-        <MenuListMobile>
-          <FontAwesomeIcon icon={faBars} />
-        </MenuListMobile>
-      </Menu>
-    </>
+        </a> */}
+      <MenuList>
+        <MenuListItem>
+          <Link
+            className={routeSelected === "/" ? "active" : null}
+            to="/"
+            onClick={(ev) => handleClick(ev, "/")}
+          >
+            Início
+          </Link>
+        </MenuListItem>
+        <MenuListItem>
+          <Link
+            className={
+              routeSelected.indexOf("/companies") !== -1 ? "active" : ""
+            }
+            to="/companies"
+            onClick={(ev) => handleClick(ev, "/companies")}
+          >
+            Empresas
+          </Link>
+        </MenuListItem>
+        <MenuListItem>
+          <Link
+            className={routeSelected === "/about" ? "active" : ""}
+            to="/about"
+            onClick={(ev) => handleClick(ev, "/about")}
+          >
+            Sobre
+          </Link>
+        </MenuListItem>
+      </MenuList>
+      <MenuListMobile>
+        <FontAwesomeIcon icon={faBars} />
+      </MenuListMobile>
+    </Menu>
   );
 }
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { colors } from "../../variables.js";
+import { colors } from "../../variables";
 
 import logoMercadoFuturo from "../../assets/images/logo-mercado-futuro.png";
 
