@@ -52,30 +52,31 @@ import { Container, Section, Text, ButtonOutline } from "../../styles";
 
 import companies from "../../companies";
 
-export default function CompaniesDetail() {
+export default function CompaniesDetails({
+  vouchersCount,
+  setVouchersCount,
+  handleVouchersCount,
+}) {
   const { companySlug } = useParams();
   const [company, setCompany] = useState();
 
   useEffect(() => {
     setCompany(companies.find((item) => item.slug === companySlug));
-  }, [companySlug]);
+    handleVouchersCount(vouchersCount);
+  }, [companySlug, handleVouchersCount, vouchersCount]);
 
-  const [routeSelected, setRouteSelected] = useState(window.location.pathname);
   const [show, setShow] = useState(false);
   const [rangeValue, setRangeValue] = useState(10);
   const [monthSelected, setMonthSelected] = useState(0);
   const [donateValue, setDonateValue] = useState(0);
+  const minimumDonateValue = "R$5,00";
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleChange = (type, value) => {
     if (type === "month") {
-      if (monthSelected === value) {
-        setMonthSelected(0);
-      } else {
-        setMonthSelected(value);
-      }
+      setMonthSelected(value);
     } else {
       setRangeValue(value);
     }
@@ -92,6 +93,24 @@ export default function CompaniesDetail() {
     "Novembro 2020",
     "Dezembro 2020",
   ];
+
+  const formatPrice = (price) => {
+    return parseFloat(
+      price.replace("R$", "").replace(".", "").replace(",", ".")
+    );
+  };
+
+  const handleBlur = (value) => {
+    if (formatPrice(value) > 0 && formatPrice(value) < 5) {
+      value = minimumDonateValue;
+    }
+    setDonateValue(formatPrice(value));
+  };
+
+  const addToCart = () => {
+    handleClose();
+    setVouchersCount(vouchersCount + 1);
+  };
 
   return (
     <>
@@ -202,13 +221,15 @@ export default function CompaniesDetail() {
             <Bonus>
               <FontAwesomeIcon icon={faGem} />
               <Text>Bônus</Text>
-              <Text id="bonusPercentage">{`${parseFloat(
-                monthSelected + (donateValue ? donateValue : 0) / 100
-              ).toFixed(2)}%`}</Text>
-              <Text id="bonusTotal">{`Desconto de: R$${parseFloat(
-                rangeValue * (monthSelected / 100) +
-                  (donateValue ? donateValue : 0) / 100
-              ).toFixed(2)}`}</Text>
+              <Text id="bonusPercentage">{`${parseInt(
+                monthSelected + (donateValue ? 1 : 0)
+              )}%`}</Text>
+              <Text id="bonusTotal">{`Você vai pagar R$${parseFloat(
+                rangeValue -
+                  rangeValue * (monthSelected / 100) -
+                  (donateValue ? 0.1 : 0)
+              ).toFixed(2)} pelo seu voucher de R$${rangeValue}.
+              `}</Text>
             </Bonus>
           </VoucherMonthBonus>
           <Text>2. Escolha um valor para seu voucher</Text>
@@ -239,8 +260,8 @@ export default function CompaniesDetail() {
           <DonateContainer>
             <DonateTitle>Quero doar</DonateTitle>
             <DonateText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              scelerisque condimentum dolor et fringilla.
+              Faça uma doação para ajudar no combate ao Covid-19 e ganhe um
+              bônus extra no seu voucher.
             </DonateText>
             <DonateValueContainer>
               <DonateValueText>Informe o valor para doação:</DonateValueText>
@@ -250,21 +271,16 @@ export default function CompaniesDetail() {
                   decimalSeparator=","
                   thousandSeparator="."
                   value={donateValue}
-                  onChange={(value) =>
-                    setDonateValue(
-                      parseFloat(
-                        value
-                          .replace("R$", "")
-                          .replace(".", "")
-                          .replace(",", ".")
-                      )
-                    )
-                  }
+                  onChange={(value) => {
+                    setDonateValue(formatPrice(value));
+                  }}
+                  onBlur={(ev) => handleBlur(ev.target.value)}
                 />
               </DonateInput>
             </DonateValueContainer>
+            <Text>Valor mínimo de R$5,00.</Text>
           </DonateContainer>
-          <ButtonOutline>
+          <ButtonOutline onClick={addToCart}>
             <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon> Adicionar
             ao carrinho
           </ButtonOutline>

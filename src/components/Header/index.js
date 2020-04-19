@@ -2,11 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-import { Menu, Logo, MenuList, MenuListItem, MenuListMobile } from "./styles";
+import {
+  Menu,
+  Logo,
+  MenuList,
+  MenuListItem,
+  MenuListMobile,
+  VouchersCountContainer,
+  VouchersCountText,
+} from "./styles";
 
-function Header() {
+function Header({ vouchersCount }) {
   const [routeSelected, setRouteSelected] = useState(window.location.pathname);
 
   const handleClick = (event, route) => {
@@ -50,6 +58,12 @@ function Header() {
           >
             Sobre
           </Link>
+        </MenuListItem>
+        <MenuListItem>
+          <VouchersCountContainer>
+            <FontAwesomeIcon icon={faShoppingCart} />
+            <VouchersCountText>{vouchersCount}</VouchersCountText>
+          </VouchersCountContainer>
         </MenuListItem>
       </MenuList>
       <MenuListMobile>

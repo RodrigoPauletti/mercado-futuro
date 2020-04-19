@@ -77,3 +77,16 @@ export const MenuListMobile = styled.div`
     display: flex;
   }
 `;
+
+export const VouchersCountContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const VouchersCountText = styled.p`
+  background: ${colors.primary};
+  margin: 0 0 0 0.5rem;
+  padding: 0 0.6rem;
+  color: ${colors.light};
+  border-radius: 30px;
+`;

@@ -173,20 +173,22 @@ export const Bonus = styled.div`
   border-radius: 0.7rem;
   max-width: 400px;
   font-size: 2.6rem;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
+  #bonusTotal {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
   @media (max-width: 1024px) {
-    background: transparent;
     width: 100%;
     max-width: initial;
     font-size: 1.5rem;
-    flex-direction: row;
     padding: 1rem 0;
     & p {
       margin-left: 1rem;
     }
   }
   @media (max-width: 525px) {
-    flex-direction: column;
     #bonusTotal {
       width: 100%;
       margin: 0;

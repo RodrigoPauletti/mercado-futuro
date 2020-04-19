@@ -8,7 +8,7 @@ function Footer() {
     <Container>
       <Section>
         <FooterText>
-          © Copyright 2020 Time 2 - HackaTrouble - Todos os direitos reservados.
+          © Copyright 2020 Time 4 - HackaTrouble - Todos os direitos reservados.
         </FooterText>
       </Section>
     </Container>
