@@ -61,7 +61,7 @@ export default function CompaniesDetail() {
   }, [companySlug]);
 
   const [routeSelected, setRouteSelected] = useState(window.location.pathname);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const [rangeValue, setRangeValue] = useState(10);
   const [monthSelected, setMonthSelected] = useState(0);
   const [donateValue, setDonateValue] = useState(0);
