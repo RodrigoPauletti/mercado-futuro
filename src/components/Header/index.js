@@ -2,23 +2,29 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faShoppingCart,
+  faBars,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 import {
   Menu,
   Logo,
   MenuList,
-  MenuListItem,
   MenuListMobile,
-  VouchersCountContainer,
-  VouchersCountText,
+  MenuListItemsMobile,
 } from "./styles";
+
+import MenuListItems from "../MenuListItems";
 
 function Header({ vouchersCount }) {
   const [routeSelected, setRouteSelected] = useState(window.location.pathname);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleClick = (event, route) => {
     setRouteSelected(route);
+    setMenuOpen(false);
   };
 
   return (
@@ -26,49 +32,21 @@ function Header({ vouchersCount }) {
       <Link to="/" onClick={(ev) => handleClick(ev, "/")}>
         <Logo />
       </Link>
-      {/* <a href="http://bit.ly/mercado-futuro" rel="noopener noreferrer">
-          <Logo />
-        </a> */}
       <MenuList>
-        <MenuListItem>
-          <Link
-            className={routeSelected === "/" ? "active" : null}
-            to="/"
-            onClick={(ev) => handleClick(ev, "/")}
-          >
-            Início
-          </Link>
-        </MenuListItem>
-        <MenuListItem>
-          <Link
-            className={
-              routeSelected.indexOf("/companies") !== -1 ? "active" : ""
-            }
-            to="/companies"
-            onClick={(ev) => handleClick(ev, "/companies")}
-          >
-            Empresas
-          </Link>
-        </MenuListItem>
-        <MenuListItem>
-          <Link
-            className={routeSelected === "/about" ? "active" : ""}
-            to="/about"
-            onClick={(ev) => handleClick(ev, "/about")}
-          >
-            Sobre
-          </Link>
-        </MenuListItem>
-        <MenuListItem>
-          <VouchersCountContainer>
-            <FontAwesomeIcon icon={faShoppingCart} />
-            <VouchersCountText>{vouchersCount}</VouchersCountText>
-          </VouchersCountContainer>
-        </MenuListItem>
+        <MenuListItems vouchersCount={vouchersCount} />
       </MenuList>
       <MenuListMobile>
-        <FontAwesomeIcon icon={faBars} />
+        <FontAwesomeIcon
+          icon={menuOpen ? faTimes : faBars}
+          onClick={() => setMenuOpen(!menuOpen)}
+        />
       </MenuListMobile>
+      <MenuListItemsMobile className={menuOpen ? "menuOpen" : ""}>
+        <MenuListItems
+          vouchersCount={vouchersCount}
+          setMenuOpen={setMenuOpen}
+        />
+      </MenuListItemsMobile>
     </Menu>
   );
 }

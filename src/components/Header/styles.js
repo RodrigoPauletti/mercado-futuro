@@ -20,7 +20,8 @@ export const Menu = styled.div`
   right: 0;
   z-index: 1040;
   @media (max-width: 1100px) {
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 0 0;
+    flex-direction: column;
   }
 `;
 
@@ -44,25 +45,6 @@ export const MenuList = styled.ul`
   }
 `;
 
-export const MenuListItem = styled.li`
-  font-size: 1rem;
-  padding: 0.5rem 0.75rem;
-  a {
-    color: ${colors.gray};
-    position: relative;
-    font-weight: 300;
-    &.active {
-      font-weight: 700;
-    }
-    &.active,
-    &:hover {
-      color: ${colors.primary};
-      cursor: pointer;
-      text-decoration: none;
-    }
-  }
-`;
-
 export const MenuListMobile = styled.div`
   display: none;
   margin: 0;
@@ -75,18 +57,34 @@ export const MenuListMobile = styled.div`
   }
   @media (max-width: 1100px) {
     display: flex;
+    flex-direction: column;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
   }
 `;
 
-export const VouchersCountContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const VouchersCountText = styled.p`
-  background: ${colors.primary};
-  margin: 0 0 0 0.5rem;
-  padding: 0 0.6rem;
-  color: ${colors.light};
-  border-radius: 30px;
+export const MenuListItemsMobile = styled.ul`
+  background: ${colors.light};
+  display: none;
+  height: 0;
+  transition: 0.3s all ease;
+  @media (max-width: 1100px) {
+    &.menuOpen {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 59px;
+      left: 0;
+      text-align: center;
+      list-style: none;
+      margin: 0;
+      padding: 0 0 0.5rem 0;
+      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.06);
+    }
+  }
 `;

@@ -60,7 +60,7 @@ export default [
     phone: "(21) 99999-9999",
   },
   {
-    name: "Restaurante Ponto do Saber",
+    name: "Restaurante Ponto do Sabor",
     slug: "restaurante-ponto-do-sabor",
     image: "restaurante-ponto-do-sabor.png",
     description:

@@ -28,6 +28,9 @@ export const CompanyDetails = styled.div`
 export const CompanyDetailsTop = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const CompanyDetailsTitle = styled.h1`
@@ -35,6 +38,9 @@ export const CompanyDetailsTitle = styled.h1`
   font-size: 2rem;
   font-weight: bold;
   margin: 0;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const CompanyDetailsSocialNetworks = styled.div`
@@ -47,6 +53,12 @@ export const CompanyDetailsSocialNetworks = styled.div`
   }
   a {
     text-decoration: none;
+  }
+  @media (max-width: 768px) {
+    margin-top: 1rem;
+    svg {
+      font-size: 1.3rem;
+    }
   }
 `;
 
@@ -65,13 +77,9 @@ export const CompanyDetailsImage = styled.img.attrs(({ src }) => {
   margin: 0 auto 1rem;
 `;
 
-export const CompanyDetailsDescription = styled.p`
-  /* margin: 0; */
-`;
+export const CompanyDetailsDescription = styled.p``;
 
-export const CompanyDetailsInfos = styled.div`
-  /* margin-left: 1.5rem; */
-`;
+export const CompanyDetailsInfos = styled.div``;
 
 export const CompanyDetailsInfosItem = styled.p`
   svg {
